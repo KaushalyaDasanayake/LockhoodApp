@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LockHoodDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cutomers">
+    <Key>
+      <PropertyRef Name="cusID" />
+    </Key>
+    <Property Name="cusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="company" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contactNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="departmentID" />
+    </Key>
+    <Property Name="departmentID" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="employeeID" />
+    </Key>
+    <Property Name="employeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contactNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dob" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="department" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="salary" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="registerDate" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="serviceTime" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeTask">
+    <Key>
+      <PropertyRef Name="taskID" />
+    </Key>
+    <Property Name="taskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="worktaskID" Type="int" Nullable="false" />
+    <Property Name="empID" Type="int" Nullable="false" />
+    <Property Name="AllocatedHours" Type="time" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Factory">
+    <Key>
+      <PropertyRef Name="factoryID" />
+    </Key>
+    <Property Name="factoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="departmentID" Type="int" />
+    <Property Name="quantity" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="inventoryID" />
+    </Key>
+    <Property Name="inventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="item_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cost" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="loginID" />
+    </Key>
+    <Property Name="loginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleID" Type="int" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderSales">
+    <Key>
+      <PropertyRef Name="salesID" />
+    </Key>
+    <Property Name="salesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="qty" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="expectedDate" Type="date" />
+    <Property Name="customerID" Type="int" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="permissionID" />
+    </Key>
+    <Property Name="permissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleID" Type="int" />
+    <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="module" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="inventoryID" />
+    </Key>
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="inventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="stockNumber" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="reportID" />
+    </Key>
+    <Property Name="reportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="date" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleType">
+    <Key>
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleTitle" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userRoleId" Type="int" />
+    <Property Name="userName" Type="varchar" MaxLength="50" />
+    <Property Name="userEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userDOB" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userAddress" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userDepartmentID" Type="int" />
+  </EntityType>
+  <EntityType Name="WorkTask">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="salesID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="ExpectedDate" Type="date" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_EmployeeTask_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmployeeTask" Type="Self.EmployeeTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeeID" />
+      </Principal>
+      <Dependent Role="EmployeeTask">
+        <PropertyRef Name="empID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeTask_EmployeeTask">
+    <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="1" />
+    <End Role="EmployeeTask" Type="Self.EmployeeTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkTask">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EmployeeTask">
+        <PropertyRef Name="worktaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Factory_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Factory" Type="Self.Factory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="departmentID" />
+      </Principal>
+      <Dependent Role="Factory">
+        <PropertyRef Name="departmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_RoleType">
+    <End Role="RoleType" Type="Self.RoleType" Multiplicity="0..1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleType">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Permission_RoleType">
+    <End Role="RoleType" Type="Self.RoleType" Multiplicity="0..1" />
+    <End Role="Permission" Type="Self.Permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleType">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="Permission">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Sales">
+    <End Role="Cutomers" Type="Self.Cutomers" Multiplicity="0..1" />
+    <End Role="OrderSales" Type="Self.OrderSales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cutomers">
+        <PropertyRef Name="cusID" />
+      </Principal>
+      <Dependent Role="OrderSales">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_RoleType">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="departmentID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="userDepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_RoleType1">
+    <End Role="RoleType" Type="Self.RoleType" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleType">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="userRoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkTask_WorkTask">
+    <End Role="OrderSales" Type="Self.OrderSales" Multiplicity="0..1" />
+    <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderSales">
+        <PropertyRef Name="salesID" />
+      </Principal>
+      <Dependent Role="WorkTask">
+        <PropertyRef Name="salesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkTask_WorkTask1">
+    <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="1" />
+    <End Role="WorkTask1" Type="Self.WorkTask" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="WorkTask">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkTask1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LockHoodDBModelStoreContainer">
+    <EntitySet Name="Cutomers" EntityType="Self.Cutomers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeTask" EntityType="Self.EmployeeTask" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Factory" EntityType="Self.Factory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderSales" EntityType="Self.OrderSales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleType" EntityType="Self.RoleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkTask" EntityType="Self.WorkTask" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_EmployeeTask_Employee" Association="Self.FK_EmployeeTask_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeeTask" EntitySet="EmployeeTask" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeTask_EmployeeTask" Association="Self.FK_EmployeeTask_EmployeeTask">
+      <End Role="WorkTask" EntitySet="WorkTask" />
+      <End Role="EmployeeTask" EntitySet="EmployeeTask" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Factory_Department" Association="Self.FK_Factory_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Factory" EntitySet="Factory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_RoleType" Association="Self.FK_Login_RoleType">
+      <End Role="RoleType" EntitySet="RoleType" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Permission_RoleType" Association="Self.FK_Permission_RoleType">
+      <End Role="RoleType" EntitySet="RoleType" />
+      <End Role="Permission" EntitySet="Permission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Sales" Association="Self.FK_Sales_Sales">
+      <End Role="Cutomers" EntitySet="Cutomers" />
+      <End Role="OrderSales" EntitySet="OrderSales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_RoleType" Association="Self.FK_User_RoleType">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_RoleType1" Association="Self.FK_User_RoleType1">
+      <End Role="RoleType" EntitySet="RoleType" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkTask_WorkTask" Association="Self.FK_WorkTask_WorkTask">
+      <End Role="OrderSales" EntitySet="OrderSales" />
+      <End Role="WorkTask" EntitySet="WorkTask" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkTask_WorkTask1" Association="Self.FK_WorkTask_WorkTask1">
+      <End Role="WorkTask" EntitySet="WorkTask" />
+      <End Role="WorkTask1" EntitySet="WorkTask" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
