@@ -131,6 +131,8 @@
     <Compile Include="Controllers\CutomersController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventorieController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2433,6 +2435,16 @@
     <Content Include="Views\Cutomers\Details.cshtml" />
     <Content Include="Views\Cutomers\Edit.cshtml" />
     <Content Include="Views\Cutomers\Index.cshtml" />
+    <Content Include="Views\Inventorie\Create.cshtml" />
+    <Content Include="Views\Inventorie\Delete.cshtml" />
+    <Content Include="Views\Inventorie\Details.cshtml" />
+    <Content Include="Views\Inventorie\Edit.cshtml" />
+    <Content Include="Views\Inventorie\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
