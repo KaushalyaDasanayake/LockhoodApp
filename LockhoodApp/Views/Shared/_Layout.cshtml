@@ -31,11 +31,11 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <h3>LOCK</h3>
+            <h3>LOCK HOOD</h3>
         </div>
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-lightblue navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -53,10 +53,11 @@
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-red elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <span class="brand-text font-weight-light">LOCK HOOD Dashboard</span>
+                <span class="brand-text font-weight-bold">LOCK HOOD Dashboard</span><br /><br />
+                <h7>Welcome guys!!!</h7>
             </a>
 
             <!-- Sidebar -->
@@ -98,51 +99,15 @@
                                 <li class="nav-item">
                                     <a href="pages/layout/top-nav.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Top Navigation</p>
+                                        <p>View Product</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Top Navigation + Sidebar</p>
+                                        <p>Add Product</p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/layout/boxed.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Boxed</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Sidebar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Navbar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/layout/fixed-footer.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Fixed Footer</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Collapsed Sidebar</p>
-                                    </a>
-                                </li>
+                                </li>                           
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -186,12 +151,12 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/forms/general.html" class="nav-link">
+                                    <a href="@Url.Action("Index","Cutomers")" class="nav-link">
                                         <p>View Customer</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/forms/advanced.html" class="nav-link">
+                                    <a href="@Url.Action("Create","Cutomers")" class="nav-link">
                                         <p>Add Customer</p>
                                     </a>
                                 </li>
@@ -206,13 +171,13 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="pages/tables/simple.html" class="nav-link">
+                                <li class="navu-item">
+                                    <a href="@Url.Action("Index","Users")" class="nav-link">
                                         <p>View User</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/tables/data.html" class="nav-link">
+                                    <a href="@Url.Action("Create","User")" class="nav-link">
                                         <p>Add User</p>
                                     </a>
                                 </li>

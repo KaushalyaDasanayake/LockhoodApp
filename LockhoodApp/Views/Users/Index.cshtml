@@ -1,0 +1,64 @@
+﻿@model IEnumerable<LockhoodApp.Models.User>
+
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-hover table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.userName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userDOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleType.roleTitle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userDOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleType.roleTitle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.userID }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.userID }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.userID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
