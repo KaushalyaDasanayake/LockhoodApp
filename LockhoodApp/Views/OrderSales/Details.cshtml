@@ -1,0 +1,43 @@
+﻿@model LockhoodApp.Models.OrderSale
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderSale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.qty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expectedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expectedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cutomer.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cutomer.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.salesID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

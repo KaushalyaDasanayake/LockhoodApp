@@ -20,9 +20,9 @@ namespace LockhoodApp.Models
             this.EmployeeTasks = new HashSet<EmployeeTask>();
         }
     
-        public int employeeID { get; set; }
+        public int ID { get; set; }
         public string name { get; set; }
-        public string address { get; set; }
+        public string fullName { get; set; }
         public string email { get; set; }
         public string contactNo { get; set; }
         public string dob { get; set; }

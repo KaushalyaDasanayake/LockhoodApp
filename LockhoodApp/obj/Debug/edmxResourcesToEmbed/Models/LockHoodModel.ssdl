@@ -23,11 +23,11 @@
   </EntityType>
   <EntityType Name="Employee">
     <Key>
-      <PropertyRef Name="employeeID" />
+      <PropertyRef Name="name" />
     </Key>
-    <Property Name="employeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fullName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="contactNo" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="dob" Type="varchar" MaxLength="50" Nullable="false" />
@@ -42,8 +42,8 @@
     </Key>
     <Property Name="taskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="worktaskID" Type="int" Nullable="false" />
-    <Property Name="empID" Type="int" Nullable="false" />
-    <Property Name="AllocatedHours" Type="time" Precision="7" Nullable="false" />
+    <Property Name="empName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="allocatedHours" Type="time" Precision="7" Nullable="false" />
   </EntityType>
   <EntityType Name="Factory">
     <Key>
@@ -62,8 +62,10 @@
     </Key>
     <Property Name="inventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="item_name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="cost" Type="varchar" MaxLength="50" />
+    <Property Name="cost" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="qty" Type="decimal" Precision="8" Scale="2" Nullable="false" />
     <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="item_warningLevel" Type="decimal" Precision="8" Scale="0" Nullable="false" />
     <Property Name="type" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Login">
@@ -80,9 +82,9 @@
       <PropertyRef Name="salesID" />
     </Key>
     <Property Name="salesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="qty" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="expectedDate" Type="date" />
-    <Property Name="customerID" Type="int" />
+    <Property Name="qty" Type="int" Nullable="false" />
+    <Property Name="expectedDate" Type="date" Nullable="false" />
+    <Property Name="customerID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Permission">
     <Key>
@@ -97,13 +99,20 @@
   <EntityType Name="Product">
     <Key>
       <PropertyRef Name="ProductID" />
-      <PropertyRef Name="inventoryID" />
     </Key>
     <Property Name="ProductID" Type="int" Nullable="false" />
-    <Property Name="inventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="stockNumber" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProductItems">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productId" Type="int" Nullable="false" />
+    <Property Name="itemId" Type="int" Nullable="false" />
+    <Property Name="qty" Type="decimal" Precision="8" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="Report">
     <Key>
@@ -148,24 +157,26 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="salesID" Type="int" />
-    <Property Name="ProductID" Type="int" />
-    <Property Name="ExpectedDate" Type="date" Nullable="false" />
-    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="salesId" Type="int" Nullable="false" />
+    <Property Name="productId" Type="int" Nullable="false" />
+    <Property Name="startingDate" Type="date" Nullable="false" />
+    <Property Name="expectedDate" Type="date" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_EmployeeTask_Employee">
     <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
     <End Role="EmployeeTask" Type="Self.EmployeeTask" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Employee">
-        <PropertyRef Name="employeeID" />
+        <PropertyRef Name="name" />
       </Principal>
       <Dependent Role="EmployeeTask">
-        <PropertyRef Name="empID" />
+        <PropertyRef Name="empName" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EmployeeTask_EmployeeTask">
+  <Association Name="FK_EmployeeTask_WorkTask">
     <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="1" />
     <End Role="EmployeeTask" Type="Self.EmployeeTask" Multiplicity="*" />
     <ReferentialConstraint>
@@ -213,8 +224,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ProductItems_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+    <End Role="ProductItems" Type="Self.ProductItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="inventoryID" />
+      </Principal>
+      <Dependent Role="ProductItems">
+        <PropertyRef Name="itemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItems_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductItems" Type="Self.ProductItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductItems">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Sales_Sales">
-    <End Role="Cutomers" Type="Self.Cutomers" Multiplicity="0..1" />
+    <End Role="Cutomers" Type="Self.Cutomers" Multiplicity="1" />
     <End Role="OrderSales" Type="Self.OrderSales" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Cutomers">
@@ -249,27 +284,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_WorkTask_WorkTask">
-    <End Role="OrderSales" Type="Self.OrderSales" Multiplicity="0..1" />
+  <Association Name="FK_WorkTask_OrderSales">
+    <End Role="OrderSales" Type="Self.OrderSales" Multiplicity="1" />
     <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="OrderSales">
         <PropertyRef Name="salesID" />
       </Principal>
       <Dependent Role="WorkTask">
-        <PropertyRef Name="salesID" />
+        <PropertyRef Name="salesId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_WorkTask_WorkTask1">
-    <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="1" />
-    <End Role="WorkTask1" Type="Self.WorkTask" Multiplicity="0..1" />
+  <Association Name="FK_WorkTask_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="WorkTask">
-        <PropertyRef Name="ID" />
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
       </Principal>
-      <Dependent Role="WorkTask1">
-        <PropertyRef Name="ID" />
+      <Dependent Role="WorkTask">
+        <PropertyRef Name="productId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -284,6 +319,7 @@
     <EntitySet Name="OrderSales" EntityType="Self.OrderSales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductItems" EntityType="Self.ProductItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RoleType" EntityType="Self.RoleType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -293,7 +329,7 @@
       <End Role="Employee" EntitySet="Employee" />
       <End Role="EmployeeTask" EntitySet="EmployeeTask" />
     </AssociationSet>
-    <AssociationSet Name="FK_EmployeeTask_EmployeeTask" Association="Self.FK_EmployeeTask_EmployeeTask">
+    <AssociationSet Name="FK_EmployeeTask_WorkTask" Association="Self.FK_EmployeeTask_WorkTask">
       <End Role="WorkTask" EntitySet="WorkTask" />
       <End Role="EmployeeTask" EntitySet="EmployeeTask" />
     </AssociationSet>
@@ -309,6 +345,14 @@
       <End Role="RoleType" EntitySet="RoleType" />
       <End Role="Permission" EntitySet="Permission" />
     </AssociationSet>
+    <AssociationSet Name="FK_ProductItems_Inventory" Association="Self.FK_ProductItems_Inventory">
+      <End Role="Inventory" EntitySet="Inventory" />
+      <End Role="ProductItems" EntitySet="ProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItems_Product" Association="Self.FK_ProductItems_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductItems" EntitySet="ProductItems" />
+    </AssociationSet>
     <AssociationSet Name="FK_Sales_Sales" Association="Self.FK_Sales_Sales">
       <End Role="Cutomers" EntitySet="Cutomers" />
       <End Role="OrderSales" EntitySet="OrderSales" />
@@ -321,13 +365,13 @@
       <End Role="RoleType" EntitySet="RoleType" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
-    <AssociationSet Name="FK_WorkTask_WorkTask" Association="Self.FK_WorkTask_WorkTask">
+    <AssociationSet Name="FK_WorkTask_OrderSales" Association="Self.FK_WorkTask_OrderSales">
       <End Role="OrderSales" EntitySet="OrderSales" />
       <End Role="WorkTask" EntitySet="WorkTask" />
     </AssociationSet>
-    <AssociationSet Name="FK_WorkTask_WorkTask1" Association="Self.FK_WorkTask_WorkTask1">
+    <AssociationSet Name="FK_WorkTask_Product" Association="Self.FK_WorkTask_Product">
+      <End Role="Product" EntitySet="Product" />
       <End Role="WorkTask" EntitySet="WorkTask" />
-      <End Role="WorkTask1" EntitySet="WorkTask" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

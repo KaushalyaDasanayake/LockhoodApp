@@ -21,9 +21,9 @@ namespace LockhoodApp.Models
         }
     
         public int salesID { get; set; }
-        public string qty { get; set; }
-        public Nullable<System.DateTime> expectedDate { get; set; }
-        public Nullable<int> customerID { get; set; }
+        public int qty { get; set; }
+        public System.DateTime expectedDate { get; set; }
+        public int customerID { get; set; }
     
         public virtual Cutomer Cutomer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

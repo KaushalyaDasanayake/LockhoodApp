@@ -21,15 +21,16 @@ namespace LockhoodApp.Models
         }
     
         public int ID { get; set; }
-        public Nullable<int> salesID { get; set; }
-        public Nullable<int> ProductID { get; set; }
-        public System.DateTime ExpectedDate { get; set; }
-        public string Status { get; set; }
+        public string Name { get; set; }
+        public int salesId { get; set; }
+        public int productId { get; set; }
+        public System.DateTime startingDate { get; set; }
+        public System.DateTime expectedDate { get; set; }
+        public string status { get; set; }
     
+        public virtual OrderSale OrderSale { get; set; }
+        public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeTask> EmployeeTasks { get; set; }
-        public virtual OrderSale OrderSale { get; set; }
-        public virtual WorkTask WorkTask1 { get; set; }
-        public virtual WorkTask WorkTask2 { get; set; }
     }
 }

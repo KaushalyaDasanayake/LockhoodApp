@@ -24,32 +24,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="LockHoodDBModel.Employee">
-        <MappingFragment StoreEntitySet="Employee">
-          <ScalarProperty Name="employeeID" ColumnName="employeeID" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="contactNo" ColumnName="contactNo" />
-          <ScalarProperty Name="dob" ColumnName="dob" />
-          <ScalarProperty Name="department" ColumnName="department" />
-          <ScalarProperty Name="salary" ColumnName="salary" />
-          <ScalarProperty Name="registerDate" ColumnName="registerDate" />
-          <ScalarProperty Name="serviceTime" ColumnName="serviceTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="EmployeeTasks">
-      <EntityTypeMapping TypeName="LockHoodDBModel.EmployeeTask">
-        <MappingFragment StoreEntitySet="EmployeeTask">
-          <ScalarProperty Name="taskID" ColumnName="taskID" />
-          <ScalarProperty Name="worktaskID" ColumnName="worktaskID" />
-          <ScalarProperty Name="empID" ColumnName="empID" />
-          <ScalarProperty Name="AllocatedHours" ColumnName="AllocatedHours" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Factories">
       <EntityTypeMapping TypeName="LockHoodDBModel.Factory">
         <MappingFragment StoreEntitySet="Factory">
@@ -59,17 +33,6 @@
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="departmentID" ColumnName="departmentID" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Inventories">
-      <EntityTypeMapping TypeName="LockHoodDBModel.Inventory">
-        <MappingFragment StoreEntitySet="Inventory">
-          <ScalarProperty Name="inventoryID" ColumnName="inventoryID" />
-          <ScalarProperty Name="item_name" ColumnName="item_name" />
-          <ScalarProperty Name="cost" ColumnName="cost" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="type" ColumnName="type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -83,16 +46,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderSales">
-      <EntityTypeMapping TypeName="LockHoodDBModel.OrderSale">
-        <MappingFragment StoreEntitySet="OrderSales">
-          <ScalarProperty Name="salesID" ColumnName="salesID" />
-          <ScalarProperty Name="qty" ColumnName="qty" />
-          <ScalarProperty Name="expectedDate" ColumnName="expectedDate" />
-          <ScalarProperty Name="customerID" ColumnName="customerID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Permissions">
       <EntityTypeMapping TypeName="LockHoodDBModel.Permission">
         <MappingFragment StoreEntitySet="Permission">
@@ -101,17 +54,6 @@
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="module" ColumnName="module" />
           <ScalarProperty Name="description" ColumnName="description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="LockHoodDBModel.Product">
-        <MappingFragment StoreEntitySet="Product">
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-          <ScalarProperty Name="inventoryID" ColumnName="inventoryID" />
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="stockNumber" ColumnName="stockNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -157,14 +99,85 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="LockHoodDBModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="stockNumber" ColumnName="stockNumber" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductItems">
+      <EntityTypeMapping TypeName="LockHoodDBModel.ProductItem">
+        <MappingFragment StoreEntitySet="ProductItems">
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="itemId" ColumnName="itemId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderSales">
+      <EntityTypeMapping TypeName="LockHoodDBModel.OrderSale">
+        <MappingFragment StoreEntitySet="OrderSales">
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="expectedDate" ColumnName="expectedDate" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="salesID" ColumnName="salesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventories">
+      <EntityTypeMapping TypeName="LockHoodDBModel.Inventory">
+        <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="item_warningLevel" ColumnName="item_warningLevel" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="item_name" ColumnName="item_name" />
+          <ScalarProperty Name="inventoryID" ColumnName="inventoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="WorkTasks">
       <EntityTypeMapping TypeName="LockHoodDBModel.WorkTask">
         <MappingFragment StoreEntitySet="WorkTask">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="expectedDate" ColumnName="expectedDate" />
+          <ScalarProperty Name="startingDate" ColumnName="startingDate" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="salesId" ColumnName="salesId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="salesID" ColumnName="salesID" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-          <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeTasks">
+      <EntityTypeMapping TypeName="LockHoodDBModel.EmployeeTask">
+        <MappingFragment StoreEntitySet="EmployeeTask">
+          <ScalarProperty Name="allocatedHours" ColumnName="allocatedHours" />
+          <ScalarProperty Name="empName" ColumnName="empName" />
+          <ScalarProperty Name="worktaskID" ColumnName="worktaskID" />
+          <ScalarProperty Name="taskID" ColumnName="taskID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="LockHoodDBModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="serviceTime" ColumnName="serviceTime" />
+          <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -42,7 +42,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="@Url.Action("Index","Home")" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -80,8 +80,8 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-             
+    with font-awesome or any other icon font library -->
+
                         <li class="nav-item">
                             <a href="pages/widgets.html" class="nav-link">
                             </a>
@@ -97,28 +97,40 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav.html" class="nav-link">
+                                    <a href="@Url.Action("Index","Product")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>View Product</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                    <a href="@Url.Action("Create","Product")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add Product</p>
                                     </a>
-                                </li>                           
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    Items 
+                                    Items
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                           
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Index","Inventorie")" class="nav-link">
+                                        <p>View Items</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Create","Inventorie")" class="nav-link">
+                                        <p>Add Items</p>
+                                    </a>
+                                </li>
+                            </ul>
+
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -177,18 +189,36 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Create","User")" class="nav-link">
+                                    <a href="@Url.Action("Create","Users")" class="nav-link">
                                         <p>Add User</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        
+
                         <li class="nav-item">
-                            <a href="pages/kanban.html" class="nav-link">
+                            <a href="@Url.Action("Index","Home")" class="nav-link">
                                 <i class="nav-icon fas fa-columns"></i>
                                 <p>
                                     Kanban Board
+                                </p>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","WorkTask")" class="nav-link">
+                                <i class="nav-icon fas fa-columns"></i>
+                                <p>
+                                    Work Task
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","OrderSales")" class="nav-link">
+                                <i class="nav-icon fas fa-columns"></i>
+                                <p>
+                                    Sales Order
                                 </p>
                             </a>
                         </li>
@@ -229,7 +259,7 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                           
+
                         </li>
                     </ul>
                 </nav>
@@ -299,7 +329,7 @@
     <script src="~/Frontend/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/Frontend/dist/js/pages/dashboard.js"></script>
-
+    <script src="~/Scripts/CustomJS.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

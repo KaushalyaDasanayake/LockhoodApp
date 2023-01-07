@@ -5,78 +5,93 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Employees</h2>
+<h2></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table table-hover table-responsive">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contactNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dob)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.department)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.salary)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.registerDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.serviceTime)
-        </th>
-        <th></th>
-    </tr>
+<p><a class="btn btn-success" href="@Url.Action("exportReport")">Download Report</a></p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contactNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dob)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.department)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.salary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.registerDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.serviceTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.employeeID}, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("Details", "Details", new { id=item.employeeID }, new { @class = "btn btn-success" }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.employeeID }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
+<!-- Input addon -->
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Employee List</h3>
+    </div>
+    <table class="table table-hover table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contactNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.registerDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.serviceTime)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.contactNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dob)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.registerDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.serviceTime)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    <!-- /.card-body -->
+</div>
+
+
+ 

@@ -11,7 +11,7 @@
     <Property Name="contactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="OrderSales" Relationship="Self.FK_Sales_Sales" FromRole="Cutomers" ToRole="OrderSales" />
+    <NavigationProperty Name="OrderSales" Relationship="LockHoodDBModel.FK_Sales_Sales" FromRole="Cutomer" ToRole="OrderSale" />
   </EntityType>
   <EntityType Name="Department">
     <Key>
@@ -23,33 +23,6 @@
     <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Factories" Relationship="Self.FK_Factory_Department" FromRole="Department" ToRole="Factory" />
     <NavigationProperty Name="Users" Relationship="Self.FK_User_RoleType" FromRole="Department" ToRole="User" />
-  </EntityType>
-  <EntityType Name="Employee">
-    <Key>
-      <PropertyRef Name="employeeID" />
-    </Key>
-    <Property Name="employeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="contactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="dob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="salary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="registerDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="serviceTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="EmployeeTasks" Relationship="Self.FK_EmployeeTask_Employee" FromRole="Employee" ToRole="EmployeeTask" />
-  </EntityType>
-  <EntityType Name="EmployeeTask">
-    <Key>
-      <PropertyRef Name="taskID" />
-    </Key>
-    <Property Name="taskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="worktaskID" Type="Int32" Nullable="false" />
-    <Property Name="empID" Type="Int32" Nullable="false" />
-    <Property Name="AllocatedHours" Type="Time" Nullable="false" Precision="7" />
-    <NavigationProperty Name="Employee" Relationship="Self.FK_EmployeeTask_Employee" FromRole="EmployeeTask" ToRole="Employee" />
-    <NavigationProperty Name="WorkTask" Relationship="Self.FK_EmployeeTask_EmployeeTask" FromRole="EmployeeTask" ToRole="WorkTask" />
   </EntityType>
   <EntityType Name="Factory">
     <Key>
@@ -63,16 +36,6 @@
     <Property Name="quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Department" Relationship="Self.FK_Factory_Department" FromRole="Factory" ToRole="Department" />
   </EntityType>
-  <EntityType Name="Inventory">
-    <Key>
-      <PropertyRef Name="inventoryID" />
-    </Key>
-    <Property Name="inventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="item_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="cost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="Login">
     <Key>
       <PropertyRef Name="loginID" />
@@ -82,17 +45,6 @@
     <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="RoleType" Relationship="Self.FK_Login_RoleType" FromRole="Login" ToRole="RoleType" />
-  </EntityType>
-  <EntityType Name="OrderSale">
-    <Key>
-      <PropertyRef Name="salesID" />
-    </Key>
-    <Property Name="salesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="expectedDate" Type="DateTime" Precision="0" />
-    <Property Name="customerID" Type="Int32" />
-    <NavigationProperty Name="Cutomer" Relationship="Self.FK_Sales_Sales" FromRole="OrderSales" ToRole="Cutomers" />
-    <NavigationProperty Name="WorkTasks" Relationship="Self.FK_WorkTask_WorkTask" FromRole="OrderSales" ToRole="WorkTask" />
   </EntityType>
   <EntityType Name="Permission">
     <Key>
@@ -104,17 +56,6 @@
     <Property Name="module" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="RoleType" Relationship="Self.FK_Permission_RoleType" FromRole="Permission" ToRole="RoleType" />
-  </EntityType>
-  <EntityType Name="Product">
-    <Key>
-      <PropertyRef Name="ProductID" />
-      <PropertyRef Name="inventoryID" />
-    </Key>
-    <Property Name="ProductID" Type="Int32" Nullable="false" />
-    <Property Name="inventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="stockNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Report">
     <Key>
@@ -159,32 +100,6 @@
     <NavigationProperty Name="Department" Relationship="Self.FK_User_RoleType" FromRole="User" ToRole="Department" />
     <NavigationProperty Name="RoleType" Relationship="Self.FK_User_RoleType1" FromRole="User" ToRole="RoleType" />
   </EntityType>
-  <EntityType Name="WorkTask">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="salesID" Type="Int32" />
-    <Property Name="ProductID" Type="Int32" />
-    <Property Name="ExpectedDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="EmployeeTasks" Relationship="Self.FK_EmployeeTask_EmployeeTask" FromRole="WorkTask" ToRole="EmployeeTask" />
-    <NavigationProperty Name="OrderSale" Relationship="Self.FK_WorkTask_WorkTask" FromRole="WorkTask" ToRole="OrderSales" />
-    <NavigationProperty Name="WorkTask1" Relationship="Self.FK_WorkTask_WorkTask1" FromRole="WorkTask" ToRole="WorkTask1" />
-    <NavigationProperty Name="WorkTask2" Relationship="Self.FK_WorkTask_WorkTask1" FromRole="WorkTask1" ToRole="WorkTask" />
-  </EntityType>
-  <Association Name="FK_Sales_Sales">
-    <End Role="Cutomers" Type="Self.Cutomer" Multiplicity="0..1" />
-    <End Role="OrderSales" Type="Self.OrderSale" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cutomers">
-        <PropertyRef Name="cusID" />
-      </Principal>
-      <Dependent Role="OrderSales">
-        <PropertyRef Name="customerID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Factory_Department">
     <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
     <End Role="Factory" Type="Self.Factory" Multiplicity="*" />
@@ -209,30 +124,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EmployeeTask_Employee">
-    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-    <End Role="EmployeeTask" Type="Self.EmployeeTask" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Employee">
-        <PropertyRef Name="employeeID" />
-      </Principal>
-      <Dependent Role="EmployeeTask">
-        <PropertyRef Name="empID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_EmployeeTask_EmployeeTask">
-    <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="1" />
-    <End Role="EmployeeTask" Type="Self.EmployeeTask" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="WorkTask">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="EmployeeTask">
-        <PropertyRef Name="worktaskID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Login_RoleType">
     <End Role="RoleType" Type="Self.RoleType" Multiplicity="0..1" />
     <End Role="Login" Type="Self.Login" Multiplicity="*" />
@@ -242,18 +133,6 @@
       </Principal>
       <Dependent Role="Login">
         <PropertyRef Name="roleID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_WorkTask_WorkTask">
-    <End Role="OrderSales" Type="Self.OrderSale" Multiplicity="0..1" />
-    <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OrderSales">
-        <PropertyRef Name="salesID" />
-      </Principal>
-      <Dependent Role="WorkTask">
-        <PropertyRef Name="salesID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -281,38 +160,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_WorkTask_WorkTask1">
-    <End Role="WorkTask" Type="Self.WorkTask" Multiplicity="1" />
-    <End Role="WorkTask1" Type="Self.WorkTask" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="WorkTask">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="WorkTask1">
-        <PropertyRef Name="ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="LockHoodDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cutomers" EntityType="Self.Cutomer" />
     <EntitySet Name="Departments" EntityType="Self.Department" />
-    <EntitySet Name="Employees" EntityType="Self.Employee" />
-    <EntitySet Name="EmployeeTasks" EntityType="Self.EmployeeTask" />
     <EntitySet Name="Factories" EntityType="Self.Factory" />
-    <EntitySet Name="Inventories" EntityType="Self.Inventory" />
     <EntitySet Name="Logins" EntityType="Self.Login" />
-    <EntitySet Name="OrderSales" EntityType="Self.OrderSale" />
     <EntitySet Name="Permissions" EntityType="Self.Permission" />
-    <EntitySet Name="Products" EntityType="Self.Product" />
     <EntitySet Name="Reports" EntityType="Self.Report" />
     <EntitySet Name="RoleTypes" EntityType="Self.RoleType" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="WorkTasks" EntityType="Self.WorkTask" />
-    <AssociationSet Name="FK_Sales_Sales" Association="Self.FK_Sales_Sales">
-      <End Role="Cutomers" EntitySet="Cutomers" />
-      <End Role="OrderSales" EntitySet="OrderSales" />
-    </AssociationSet>
     <AssociationSet Name="FK_Factory_Department" Association="Self.FK_Factory_Department">
       <End Role="Department" EntitySet="Departments" />
       <End Role="Factory" EntitySet="Factories" />
@@ -321,21 +178,9 @@
       <End Role="Department" EntitySet="Departments" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <AssociationSet Name="FK_EmployeeTask_Employee" Association="Self.FK_EmployeeTask_Employee">
-      <End Role="Employee" EntitySet="Employees" />
-      <End Role="EmployeeTask" EntitySet="EmployeeTasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_EmployeeTask_EmployeeTask" Association="Self.FK_EmployeeTask_EmployeeTask">
-      <End Role="WorkTask" EntitySet="WorkTasks" />
-      <End Role="EmployeeTask" EntitySet="EmployeeTasks" />
-    </AssociationSet>
     <AssociationSet Name="FK_Login_RoleType" Association="Self.FK_Login_RoleType">
       <End Role="RoleType" EntitySet="RoleTypes" />
       <End Role="Login" EntitySet="Logins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_WorkTask_WorkTask" Association="Self.FK_WorkTask_WorkTask">
-      <End Role="OrderSales" EntitySet="OrderSales" />
-      <End Role="WorkTask" EntitySet="WorkTasks" />
     </AssociationSet>
     <AssociationSet Name="FK_Permission_RoleType" Association="Self.FK_Permission_RoleType">
       <End Role="RoleType" EntitySet="RoleTypes" />
@@ -345,9 +190,212 @@
       <End Role="RoleType" EntitySet="RoleTypes" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <AssociationSet Name="FK_WorkTask_WorkTask1" Association="Self.FK_WorkTask_WorkTask1">
+    <EntitySet Name="Products" EntityType="LockHoodDBModel.Product" />
+    <EntitySet Name="ProductItems" EntityType="LockHoodDBModel.ProductItem" />
+    <AssociationSet Name="FK_ProductItems_Product" Association="LockHoodDBModel.FK_ProductItems_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductItem" EntitySet="ProductItems" />
+    </AssociationSet>
+    <EntitySet Name="OrderSales" EntityType="LockHoodDBModel.OrderSale" />
+    <AssociationSet Name="FK_Sales_Sales" Association="LockHoodDBModel.FK_Sales_Sales">
+      <End Role="Cutomer" EntitySet="Cutomers" />
+      <End Role="OrderSale" EntitySet="OrderSales" />
+    </AssociationSet>
+    <EntitySet Name="Inventories" EntityType="LockHoodDBModel.Inventory" />
+    <AssociationSet Name="FK_ProductItems_Inventory" Association="LockHoodDBModel.FK_ProductItems_Inventory">
+      <End Role="Inventory" EntitySet="Inventories" />
+      <End Role="ProductItem" EntitySet="ProductItems" />
+    </AssociationSet>
+    <EntitySet Name="WorkTasks" EntityType="LockHoodDBModel.WorkTask" />
+    <AssociationSet Name="FK_WorkTask_OrderSales" Association="LockHoodDBModel.FK_WorkTask_OrderSales">
+      <End Role="OrderSale" EntitySet="OrderSales" />
       <End Role="WorkTask" EntitySet="WorkTasks" />
-      <End Role="WorkTask1" EntitySet="WorkTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkTask_Product" Association="LockHoodDBModel.FK_WorkTask_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="WorkTask" EntitySet="WorkTasks" />
+    </AssociationSet>
+    <EntitySet Name="EmployeeTasks" EntityType="LockHoodDBModel.EmployeeTask" />
+    <AssociationSet Name="FK_EmployeeTask_WorkTask" Association="LockHoodDBModel.FK_EmployeeTask_WorkTask">
+      <End Role="WorkTask" EntitySet="WorkTasks" />
+      <End Role="EmployeeTask" EntitySet="EmployeeTasks" />
+    </AssociationSet>
+    <EntitySet Name="Employees" EntityType="LockHoodDBModel.Employee" />
+    <AssociationSet Name="FK_EmployeeTask_Employee" Association="LockHoodDBModel.FK_EmployeeTask_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeTask" EntitySet="EmployeeTasks" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="stockNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProductItems" Relationship="LockHoodDBModel.FK_ProductItems_Product" FromRole="Product" ToRole="ProductItem" />
+    <NavigationProperty Name="WorkTasks" Relationship="LockHoodDBModel.FK_WorkTask_Product" FromRole="Product" ToRole="WorkTask" />
+  </EntityType>
+  <EntityType Name="ProductItem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productId" Type="Int32" Nullable="false" />
+    <Property Name="itemId" Type="Int32" Nullable="false" />
+    <Property Name="qty" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+    <NavigationProperty Name="Product" Relationship="LockHoodDBModel.FK_ProductItems_Product" FromRole="ProductItem" ToRole="Product" />
+    <NavigationProperty Name="Inventory" Relationship="LockHoodDBModel.FK_ProductItems_Inventory" FromRole="ProductItem" ToRole="Inventory" />
+  </EntityType>
+  <Association Name="FK_ProductItems_Product">
+    <End Type="LockHoodDBModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="LockHoodDBModel.ProductItem" Role="ProductItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductItem">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OrderSale">
+    <Key>
+      <PropertyRef Name="salesID" />
+    </Key>
+    <Property Name="salesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="qty" Type="Int32" Nullable="false" />
+    <Property Name="expectedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cutomer" Relationship="LockHoodDBModel.FK_Sales_Sales" FromRole="OrderSale" ToRole="Cutomer" />
+    <NavigationProperty Name="WorkTasks" Relationship="LockHoodDBModel.FK_WorkTask_OrderSales" FromRole="OrderSale" ToRole="WorkTask" />
+  </EntityType>
+  <Association Name="FK_Sales_Sales">
+    <End Type="LockHoodDBModel.Cutomer" Role="Cutomer" Multiplicity="1" />
+    <End Type="LockHoodDBModel.OrderSale" Role="OrderSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cutomer">
+        <PropertyRef Name="cusID" />
+      </Principal>
+      <Dependent Role="OrderSale">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="inventoryID" />
+    </Key>
+    <Property Name="inventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="item_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cost" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="qty" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="item_warningLevel" Type="Decimal" Nullable="false" Precision="8" Scale="0" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProductItems" Relationship="LockHoodDBModel.FK_ProductItems_Inventory" FromRole="Inventory" ToRole="ProductItem" />
+  </EntityType>
+  <Association Name="FK_ProductItems_Inventory">
+    <End Type="LockHoodDBModel.Inventory" Role="Inventory" Multiplicity="1" />
+    <End Type="LockHoodDBModel.ProductItem" Role="ProductItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="inventoryID" />
+      </Principal>
+      <Dependent Role="ProductItem">
+        <PropertyRef Name="itemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="WorkTask">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="salesId" Type="Int32" Nullable="false" />
+    <Property Name="productId" Type="Int32" Nullable="false" />
+    <Property Name="startingDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="expectedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="OrderSale" Relationship="LockHoodDBModel.FK_WorkTask_OrderSales" FromRole="WorkTask" ToRole="OrderSale" />
+    <NavigationProperty Name="Product" Relationship="LockHoodDBModel.FK_WorkTask_Product" FromRole="WorkTask" ToRole="Product" />
+    <NavigationProperty Name="EmployeeTasks" Relationship="LockHoodDBModel.FK_EmployeeTask_WorkTask" FromRole="WorkTask" ToRole="EmployeeTask" />
+  </EntityType>
+  <Association Name="FK_WorkTask_OrderSales">
+    <End Type="LockHoodDBModel.OrderSale" Role="OrderSale" Multiplicity="1" />
+    <End Type="LockHoodDBModel.WorkTask" Role="WorkTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderSale">
+        <PropertyRef Name="salesID" />
+      </Principal>
+      <Dependent Role="WorkTask">
+        <PropertyRef Name="salesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkTask_Product">
+    <End Type="LockHoodDBModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="LockHoodDBModel.WorkTask" Role="WorkTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="WorkTask">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EmployeeTask">
+    <Key>
+      <PropertyRef Name="taskID" />
+    </Key>
+    <Property Name="taskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="worktaskID" Type="Int32" Nullable="false" />
+    <Property Name="empName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="allocatedHours" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="WorkTask" Relationship="LockHoodDBModel.FK_EmployeeTask_WorkTask" FromRole="EmployeeTask" ToRole="WorkTask" />
+    <NavigationProperty Name="Employee" Relationship="LockHoodDBModel.FK_EmployeeTask_Employee" FromRole="EmployeeTask" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK_EmployeeTask_WorkTask">
+    <End Type="LockHoodDBModel.WorkTask" Role="WorkTask" Multiplicity="1" />
+    <End Type="LockHoodDBModel.EmployeeTask" Role="EmployeeTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkTask">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EmployeeTask">
+        <PropertyRef Name="worktaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contactNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dob" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="department" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="salary" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="registerDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serviceTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EmployeeTasks" Relationship="LockHoodDBModel.FK_EmployeeTask_Employee" FromRole="Employee" ToRole="EmployeeTask" />
+  </EntityType>
+  <Association Name="FK_EmployeeTask_Employee">
+    <End Type="LockHoodDBModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="LockHoodDBModel.EmployeeTask" Role="EmployeeTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="name" />
+      </Principal>
+      <Dependent Role="EmployeeTask">
+        <PropertyRef Name="empName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

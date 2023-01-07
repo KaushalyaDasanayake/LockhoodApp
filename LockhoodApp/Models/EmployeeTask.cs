@@ -16,10 +16,10 @@ namespace LockhoodApp.Models
     {
         public int taskID { get; set; }
         public int worktaskID { get; set; }
-        public int empID { get; set; }
-        public System.TimeSpan AllocatedHours { get; set; }
+        public string empName { get; set; }
+        public System.TimeSpan allocatedHours { get; set; }
     
-        public virtual Employee Employee { get; set; }
         public virtual WorkTask WorkTask { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

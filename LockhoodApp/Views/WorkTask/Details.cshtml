@@ -1,0 +1,67 @@
+﻿@model LockhoodApp.Models.WorkTask
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkTask</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expectedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expectedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderSale.salesID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderSale.salesID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

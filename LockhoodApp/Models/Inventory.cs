@@ -14,10 +14,21 @@ namespace LockhoodApp.Models
     
     public partial class Inventory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Inventory()
+        {
+            this.ProductItems = new HashSet<ProductItem>();
+        }
+    
         public int inventoryID { get; set; }
         public string item_name { get; set; }
-        public string cost { get; set; }
+        public Nullable<decimal> cost { get; set; }
+        public decimal qty { get; set; }
         public string description { get; set; }
+        public decimal item_warningLevel { get; set; }
         public string type { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductItem> ProductItems { get; set; }
     }
 }

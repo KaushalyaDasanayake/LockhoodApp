@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CrystalDecisions.CrystalReports.Engine;
 using LockhoodApp.Models;
 
 namespace LockhoodApp.Controllers
@@ -34,6 +36,27 @@ namespace LockhoodApp.Controllers
             }
             return View(employee);
         }
+
+        public ActionResult exportReport()
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Report"), "CrystalReport2.rpt"));
+            rd.SetDataSource(db.Employees.ToList());
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "EmployeeDetails.pdf");
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
 
         // GET: Employee/Create
         public ActionResult Create()

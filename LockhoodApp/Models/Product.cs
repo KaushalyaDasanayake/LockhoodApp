@@ -14,10 +14,21 @@ namespace LockhoodApp.Models
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.ProductItems = new HashSet<ProductItem>();
+            this.WorkTasks = new HashSet<WorkTask>();
+        }
+    
         public int ProductID { get; set; }
-        public int inventoryID { get; set; }
         public string type { get; set; }
         public string description { get; set; }
         public string stockNumber { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductItem> ProductItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WorkTask> WorkTasks { get; set; }
     }
 }

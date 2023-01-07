@@ -27,18 +27,19 @@ namespace LockhoodApp.Models
     
         public virtual DbSet<Cutomer> Cutomers { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeeTask> EmployeeTasks { get; set; }
         public virtual DbSet<Factory> Factories { get; set; }
-        public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
-        public virtual DbSet<OrderSale> OrderSales { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<RoleType> RoleTypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductItem> ProductItems { get; set; }
+        public virtual DbSet<OrderSale> OrderSales { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<WorkTask> WorkTasks { get; set; }
+        public virtual DbSet<EmployeeTask> EmployeeTasks { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
     }
 }
